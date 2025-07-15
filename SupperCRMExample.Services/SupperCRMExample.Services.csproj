@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SupperCRMExample.DataAccess\SupperCRMExample.DataAccess.csproj" />
+    <ProjectReference Include="..\SupperCRMExample.Entities\SupperCRMExample.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
