@@ -1,15 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SupperCRMExample.Entities.Abstract;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SupperCRMExample.Entities
 {
 	[Table("Clients")] //Veritabanında Clients tablosuna karşılık gelir
-	public class Client //müşteri sınıfı, müşteri bilgilerini tutar
+	//müşteri sınıfı, müşteri bilgilerini tutar
+	public class Client : EntityBase //müşteri sınıfı EntityBase sınıfından türetilir, böylece Id özelliğini miras alır
 	{
 		//DataAnnotations kısımları kullanarak veri doğrulama ve sınırlamalar ekliyoruz.
-		[Key]
-		public int Id { get; set; }
-		
 		[Required,StringLength(60)]
 		public string Name { get; set; }// müşteri adı yada kurum adıda olabılır
 		

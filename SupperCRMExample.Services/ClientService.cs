@@ -1,10 +1,18 @@
-﻿namespace SupperCRMExample.Services
+﻿using SupperCRMExample.Entities;
+
+namespace SupperCRMExample.Services
 {
 	public class ClientService//client hakkında hersey burada yazılacak
 	{
-		public void CreateNew()//ekleme metodur
+		//CRUD işlemleri için gerekli metotlar burada tanımlanacak
+
+		public ClientService()
 		{
-			//create a new client
+			
+		}
+		public List<Client> List()//listeleme metodur
+		{
+
 		}
 	}
 }
