@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupperCRMExample.DataAccess
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupperCRMExample.Entities", "SupperCRMExample.Entities\SupperCRMExample.Entities.csproj", "{E69B5B7D-57BB-4045-9CFD-A69983D93045}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupperCRMExample.Models", "SupperCRMExample.Models\SupperCRMExample.Models.csproj", "{9BD3FFFA-E018-4013-BD56-A12F6F6C088A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E69B5B7D-57BB-4045-9CFD-A69983D93045}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E69B5B7D-57BB-4045-9CFD-A69983D93045}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E69B5B7D-57BB-4045-9CFD-A69983D93045}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BD3FFFA-E018-4013-BD56-A12F6F6C088A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BD3FFFA-E018-4013-BD56-A12F6F6C088A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BD3FFFA-E018-4013-BD56-A12F6F6C088A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BD3FFFA-E018-4013-BD56-A12F6F6C088A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

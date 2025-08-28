@@ -1,14 +1,25 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SupperCRMExample.Models;
+using SupperCRMExample.Services;
 
 namespace SupperCRMExample.WepApp.Controllers
 {
 	public class CustomersController : Controller
 	{
-		// GET: CustomersController
-		public ActionResult Index()
+		private readonly IClientService _clientService;//IClientService arayüzünden bir clientService nesnesi tanımlıyoruz, bu sayede ClientService sınıfının metotlarını kullanabileceğiz.
+
+		public CustomersController(IClientService clientService)//kullanıcıya ait olan service sınıfını alır ve bu sınıfı kullanarak CRUD işlemlerini yapar
 		{
-			return View();
+			_clientService = clientService;
+		}
+
+
+		// GET: CustomersController
+		public ActionResult Index()//indexte listeleme yapılacak
+		{
+			var clients = _clientService.List();
+			return View(clients);
 		}
 
 		// GET: CustomersController/Details/5
@@ -26,16 +37,17 @@ namespace SupperCRMExample.WepApp.Controllers
 		// POST: CustomersController/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(IFormCollection collection)
+		public ActionResult Create(CreateCustomerModel model)//müşteri oluşturma metodu, CreateCustomerModel'den model alır
 		{
-			try
+
+			if (ModelState.IsValid)
 			{
+				_clientService.Create(model);
 				return RedirectToAction(nameof(Index));
 			}
-			catch
-			{
-				return View();
-			}
+
+			return View(model);
+
 		}
 
 		// GET: CustomersController/Edit/5
