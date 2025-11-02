@@ -20,6 +20,9 @@ namespace SupperCRMExample.Entities
 
 		[StringLength(500)]
 		public string Description { get; set; }
+
+		public bool IsCorporate { get; set; }
+
 		public bool Locked { get; set; }//aktif mi pasif mi
 		public DateTime CreatedAt { get; set; }
 	}

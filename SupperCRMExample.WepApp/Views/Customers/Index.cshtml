@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<SupperCRMExample.Entities.Client>//burada model kısmında ılgılı entıty eklenecektır
+
+@{
     ViewData["Title"] = "Müşteriler";
     ViewData["PageName"] = "customers-index";//burada sayfalar kısmında gozukecek olan isimdir
 }
@@ -44,35 +46,42 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><!--tr'nin içindeki td kısmında p yerine istenirse span etiketi de kullanılabilinir-->
-                                <td class="text-center">
-                                    <p class="text-xs font-weight-bold">John Michael</p>
-                                </td>
-                                <td class="text-center"><!--mail adresine tıklama yapıldıgı zaman mail atmak için islem yapacak-->
-                                    <p class="text-xs font-weight-bold"><a href="mailto:john@creative-tim.com" target="_blank">john@creative-tim.com</a></p>
-                                </td>
-                                <td class="text-center">
-                                    <p class="text-xs font-weight-bold">Bireysel</p>
-                                </td>
-                                <td class="align-middle text-center text-center">
-                                    <span class="badge badge-sm bg-gradient-success">Aktif</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/2025 17:05</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <a href="javascript:;" class="text-info font-weight-bold text-xs me-2">
-                                        Düzenle
-                                    </a>
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs me-2">
-                                        Detay
-                                    </a>
-                                    <a href="javascript:;" class="text-danger font-weight-bold text-xs me-2">
-                                        Sil
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
+                          
+                            @foreach (var client in Model)
+                            {
+                                <tr>
+                                    <!--tr'nin içindeki td kısmında p yerine istenirse span etiketi de kullanılabilinir-->
+                                    <td class="text-center">
+                                        <p class="text-xs font-weight-bold">@client.Name</p>
+                                    </td>
+                                    <td class="text-center">
+                                        <!--mail adresine tıklama yapıldıgı zaman mail atmak için islem yapacak-->
+                                        <p class="text-xs font-weight-bold"><a href="mailto:@client.Email" target="_blank">@client.Email</a></p>
+                                    </td>
+                                    <td class="text-center">
+                                        <p class="text-xs font-weight-bold">@(client.IsCorporate ? "Kurumsal" : "Bireysel")</p><!--if else kosulu var burada unutma-->
+                                    </td>
+                                    <td class="align-middle text-center text-center">
+                                        <span class="badge badge-sm bg-gradient-@(client.Locked ? "secondary" : "success")">@(client.Locked ? "Pasif" : "Aktif")</span>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <span class="text-secondary text-xs font-weight-bold">@client.CreatedAt</span>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <a href="javascript:;" class="text-info font-weight-bold text-xs me-2">
+                                            Düzenle
+                                        </a>
+                                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs me-2">
+                                            Detay
+                                        </a>
+                                        <a href="javascript:;" class="text-danger font-weight-bold text-xs me-2">
+                                            Sil
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                            @* <tr>
                                 <!--tr'nin içindeki td kısmında p yerine istenirse span etiketi de kullanılabilinir-->
                                 <td class="text-center">
                                     <p class="text-xs font-weight-bold">John Michael</p>
@@ -129,7 +138,7 @@
                                         Sil
                                     </a>
                                 </td>
-                            </tr>
+                            </tr> *@
                         </tbody>
                     </table>
                 </div>
@@ -166,6 +175,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <a asp-action="FakeInsert" class="btn bg-gradient-primary">Fake Insert</a>
                         <button type="button" class="btn bg-gradient-primary">Kaydet</button>
                         <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Kapat</button>
                     </div>

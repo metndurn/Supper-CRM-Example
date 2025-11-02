@@ -33,7 +33,7 @@ namespace SupperCRMExample.Services
 			{
 				Name = name,
 				Email = email,
-				CreatedAt = DateTime.Now,
+				CreatedAt = DateTime.Now
 			};
 			_repository.Add(client);//repository üzerinden yeni bir client ekler
 		}
@@ -47,8 +47,9 @@ namespace SupperCRMExample.Services
 				Email = model.Email,
 				Phone = model.Phone,
 				Locked = model.Locked,
+				IsCorporate = model.IsCorporate,
 				Description = model.Description,
-				CreatedAt = DateTime.Now,
+				CreatedAt = DateTime.Now
 			};
 			_repository.Add(client);//repository üzerinden yeni bir client ekler ve bu client bilgileri modelden gelir
 		}

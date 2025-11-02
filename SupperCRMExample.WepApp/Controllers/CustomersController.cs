@@ -33,6 +33,20 @@ namespace SupperCRMExample.WepApp.Controllers
 		{
 			return View();
 		}
+		// GET: CustomersController/FakeInsert
+		public ActionResult FakeInsert()
+		{
+			CreateCustomerModel model = new CreateCustomerModel
+			{
+				Name = "Fake Customer",
+				IsCorporate = false,
+				Email = "FakeCustomer.com",
+				Phone = "555-555-5555",
+				Description = "This is a fake customer",
+			};
+			_clientService.Create(model);
+			return RedirectToAction(nameof(Index));
+		}
 
 		// POST: CustomersController/Create
 		[HttpPost]
