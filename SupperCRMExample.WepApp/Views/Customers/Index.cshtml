@@ -47,6 +47,15 @@
                         </thead>
                         <tbody>
                           
+                            @if (Model == null || Model.Count == 0 )
+                            {
+                                <tr>
+                                    <td colspan="6" class="text-center">
+                                        <p class="text-xs font-weight-bold">Kayıtlı Müşteri Bulunmamaktadır.</p>
+                                    </td>
+                                </tr>
+                            }
+
                             @foreach (var client in Model)
                             {
                                 <tr>
