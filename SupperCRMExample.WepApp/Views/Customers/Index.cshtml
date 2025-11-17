@@ -169,32 +169,32 @@
                             </p>
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Ad Soyad / Şirket Adı</label>
-                                <input type="text" class="form-control">
+                                <input id="name" type="text" class="form-control">
                             </div>
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">E-Posta</label>
-                                <input type="email" class="form-control">
+                                <input id="email" type="email" class="form-control">
                             </div>
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Telefon</label>
-                                <input type="tel" class="form-control">
+                                <input id="phone" type="tel" class="form-control">
                             </div>
                             <div class="form-check my-3">
-                                <input class="form-check-input" type="checkbox" id="fcustomCheck1">
+                                <input class="form-check-input" type="checkbox" id="iscorporate">
                                 <label class="custom-control-label" for="customCheck1">Kurumsal</label>
                             </div>
                             <div class="form-check my-3">
-                                <input class="form-check-input" type="checkbox" id="fcustomCheck1" >
+                                <input class="form-check-input" type="checkbox" id="isactive" >
                                 <label class="custom-control-label" for="customCheck1">Pasif</label><!--secerse aktif secmezse pasif olacak-->
                             </div>
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Açıklama</label>
-                                <textarea cols="30" rows="2" class="form-control"></textarea>
+                                <textarea id="desc" cols="30" rows="2" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-primary">Kaydet</button>
+                        <button type="button" class="btn bg-gradient-primary" onclick="createClient()">Kaydet</button>
                         <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Kapat</button>
                     </div>
                 </div>
@@ -202,3 +202,28 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        function createClient(){
+            var modal_body = $("#modal-default .modal-body"); /*modal-default eklenmistir id olarak alındı*/
+            var fname = modal_body.find("#name").val();
+            var femail = modal_body.find("#email").val();
+            var fphone = modal_body.find("#phone").val();
+            var fdesc = modal_body.find("#desc").val();
+            var fiscorporate = modal_body.find("#iscorporate").is(':checked');
+            var fisactive = modal_body.find("#isactive").is(':checked');
+
+            var data = {
+                "name": fname,
+                "email": femail,
+                "phone": fphone,
+                "desc": fdesc,
+                "iscorporate": fiscorporate,
+                "isactive": fisactive
+            };
+
+            console.log(data);
+        }
+    </script>
+}
