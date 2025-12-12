@@ -33,35 +33,20 @@ namespace SupperCRMExample.WepApp.Controllers
 		{
 			return View();
 		}
-		// GET: CustomersController/FakeInsert
-		public ActionResult FakeInsert()
-		{
-			CreateCustomerModel model = new CreateCustomerModel
-			{
-				Name = "Fake Customer",
-				IsCorporate = false,
-				Email = "FakeCustomer.com",
-				Phone = "555-555-5555",
-				Description = "This is a fake customer",
-			};
-			_clientService.Create(model);
-			return RedirectToAction(nameof(Index));
-		}
 
 		// POST: CustomersController/Create
 		[HttpPost]
-		[ValidateAntiForgeryToken]
+		//[ValidateAntiForgeryToken]
 		public ActionResult Create(CreateCustomerModel model)//müşteri oluşturma metodu, CreateCustomerModel'den model alır
 		{
-
 			if (ModelState.IsValid)
 			{
 				_clientService.Create(model);
-				return RedirectToAction(nameof(Index));
+				return Json(new { ok = true });
+				//return RedirectToAction(nameof(Index));
 			}
-
-			return View(model);
-
+			return Json(new { ok = false });
+			//return View(model);
 		}
 
 		// GET: CustomersController/Edit/5

@@ -1,15 +1,8 @@
 ﻿@model List<SupperCRMExample.Entities.Client>//burada model kısmında ılgılı entıty eklenecektır
-
 @{
     ViewData["Title"] = "Müşteriler";
     ViewData["PageName"] = "customers-index";//burada sayfalar kısmında gozukecek olan isimdir
 }
-
-@* <style>
-    .input-group.input-group-outline .form-label{
-        top:-0.6rem;
-    }
-</style> *@
 <div class="row">
     <div class="col-12">
         <div class="card my-4">
@@ -55,7 +48,6 @@
                                     </td>
                                 </tr>
                             }
-
                             @foreach (var client in Model)
                             {
                                 <tr>
@@ -89,65 +81,6 @@
                                     </td>
                                 </tr>
                             }
-
-                            @* <tr>
-                                <!--tr'nin içindeki td kısmında p yerine istenirse span etiketi de kullanılabilinir-->
-                                <td class="text-center">
-                                    <p class="text-xs font-weight-bold">John Michael</p>
-                                </td>
-                                <td class="text-center">
-                                    <p class="text-xs font-weight-bold">john@creative-tim.com</p>
-                                </td>
-                                <td class="text-center">
-                                    <p class="text-xs font-weight-bold">Bireysel</p>
-                                </td>
-                                <td class="align-middle text-center text-center">
-                                    <span class="badge badge-sm bg-gradient-secondary">Pasif</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/2025 17:05</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <a href="javascript:;" class="text-info font-weight-bold text-xs me-2">
-                                        Düzenle
-                                    </a>
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs me-2">
-                                        Detay
-                                    </a>
-                                    <a href="javascript:;" class="text-danger font-weight-bold text-xs me-2">
-                                        Sil
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <!--tr'nin içindeki td kısmında p yerine istenirse span etiketi de kullanılabilinir-->
-                                <td class="text-center">
-                                    <p class="text-xs font-weight-bold">John Michael</p>
-                                </td>
-                                <td class="text-center">
-                                    <p class="text-xs font-weight-bold">john@creative-tim.com</p>
-                                </td>
-                                <td class="text-center">
-                                    <p class="text-xs font-weight-bold">Bireysel</p>
-                                </td>
-                                <td class="align-middle text-center text-center">
-                                    <span class="badge badge-sm bg-gradient-success">Aktif</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/2025 17:05</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <a href="javascript:;" class="text-info font-weight-bold text-xs me-2">
-                                        Düzenle
-                                    </a>
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs me-2">
-                                        Detay
-                                    </a>
-                                    <a href="javascript:;" class="text-danger font-weight-bold text-xs me-2">
-                                        Sil
-                                    </a>
-                                </td>
-                            </tr> *@
                         </tbody>
                     </table>
                 </div>
@@ -184,12 +117,12 @@
                                 <label class="custom-control-label" for="customCheck1">Kurumsal</label>
                             </div>
                             <div class="form-check my-3">
-                                <input class="form-check-input" type="checkbox" id="isactive" >
+                                <input class="form-check-input" type="checkbox" id="islocked">
                                 <label class="custom-control-label" for="customCheck1">Pasif</label><!--secerse aktif secmezse pasif olacak-->
                             </div>
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Açıklama</label>
-                                <textarea id="desc" cols="30" rows="2" class="form-control"></textarea>
+                                <textarea id="description" cols="30" rows="2" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
@@ -210,20 +143,26 @@
             var fname = modal_body.find("#name").val();
             var femail = modal_body.find("#email").val();
             var fphone = modal_body.find("#phone").val();
-            var fdesc = modal_body.find("#desc").val();
+            var fdesc = modal_body.find("#description").val();
             var fiscorporate = modal_body.find("#iscorporate").is(':checked');
-            var fisactive = modal_body.find("#isactive").is(':checked');
+            var flocked = modal_body.find("#islocked").is(':checked');
 
             var data = {
                 "name": fname,
                 "email": femail,
                 "phone": fphone,
-                "desc": fdesc,
+                "description":fdesc,
                 "iscorporate": fiscorporate,
-                "isactive": fisactive
+                "locked": flocked
             };
 
-            console.log(data);
+            $.ajax({
+                method:"post",
+                url:"/Customers/Create",//yol kısmını duzgun yazınız yoksa burada hata cıkıyor
+                data: data
+            }).done(function (result) {
+                console.log("result", result);
+            });
         }
     </script>
 }
