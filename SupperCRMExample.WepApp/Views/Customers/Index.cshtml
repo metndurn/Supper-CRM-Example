@@ -158,11 +158,28 @@
 
             $.ajax({
                 method:"post",
-                url:"/Customers/Create",//yol kısmını duzgun yazınız yoksa burada hata cıkıyor
+                url:"/Customers/Create",
                 data: data
-            }).done(function (result) {
+                }).done(function (result) {
                 console.log("result", result);
+
+                // Controller'ınızın başarılı kayıt sonrası { ok: true } döndürdüğünü varsayarak
+                if (result && result.ok === true) {
+                    // Modalı Kapat
+                    $("#modal-default").modal('hide');
+
+                    // Sayfayı Yenile (Kullanıcının aynı sayfada kalmasını, ancak listeyi güncellemesini sağlar)
+                    window.location.reload();
+                }
             });
+
+            // $.ajax({
+            //     method:"post",
+            //     url:"/Customers/Create",//yol kısmını duzgun yazınız yoksa burada hata cıkıyor
+            //     data: data
+            // }).done(function (result) {
+            //     console.log("result", result);
+            // });
         }
     </script>
 }
