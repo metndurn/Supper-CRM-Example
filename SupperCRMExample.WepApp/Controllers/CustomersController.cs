@@ -39,13 +39,23 @@ namespace SupperCRMExample.WepApp.Controllers
 		//[ValidateAntiForgeryToken]
 		public ActionResult Create(CreateCustomerModel model)//müşteri oluşturma metodu, CreateCustomerModel'den model alır
 		{
+			AjaxResponseModel<string> response = new AjaxResponseModel<string>();
 			if (ModelState.IsValid)
 			{
 				_clientService.Create(model);
-				return Json(new { ok = true });
+				response.Success = "Müşteri başarıyla eklendi.";
+				return Json(response);
 				//return RedirectToAction(nameof(Index));
 			}
-			return Json(new { ok = false });
+			foreach (var key in ModelState.Keys)
+			{
+				var item = ModelState.GetValueOrDefault(key);//her bir model durumu için hataları kontrol et
+				if (item != null && item.Errors.Count > 0)//sıfırdan buyukse her bırını don ve keyı yaz
+				{
+					item.Errors.ToList().ForEach(err => response.AddError(key, err.ErrorMessage));
+				}
+			}
+			return Json(response);
 			//return View(model);
 		}
 
